@@ -17,3 +17,13 @@ add_executable(worker_tests tests/worker_tests.cpp)
 target_link_libraries(worker_tests PRIVATE worker)
 add_test(NAME lifecycle COMMAND worker_tests)
 set_tests_properties(lifecycle PROPERTIES TIMEOUT 30)
+
+if(WIN32 AND MSVC)
+    add_executable(lifetime_repro debugging/lifetime_repro.cpp)
+    target_link_libraries(lifetime_repro PRIVATE worker Dbghelp)
+    # Keep full, matching debug information for the dump exercise.
+    target_compile_options(lifetime_repro PRIVATE /Zi /Od)
+    target_link_options(lifetime_repro PRIVATE /DEBUG:FULL)
+    add_test(NAME lifetime_fixed COMMAND lifetime_repro --fixed)
+    set_tests_properties(lifetime_fixed PROPERTIES TIMEOUT 10)
+endif()

@@ -36,7 +36,7 @@ The sample captures a shared result object by value. The owner reads results onl
 
 Tests cover FIFO ordering, destructor drain, bounded admission using explicit synchronisation, idempotent close, rejection after close, four concurrent producers and continued processing after an exception. Assertions remain enabled in all build modes through explicit checks.
 
-For a Windows debugging walkthrough, see [debugging.md](docs/debugging.md). CI builds and tests both Windows and Linux. Workflow results are the authority for hosted build status.
+For a reproducible synthetic Windows crash, dump capture, symbol checks and regression test, see [debugging.md](docs/debugging.md). Read the [queue and shutdown decisions](docs/decisions.md) for alternatives and limits. CI builds and tests both Windows and Linux. Workflow results are the authority for hosted build status.
 
 ## Deliberate limits
 
